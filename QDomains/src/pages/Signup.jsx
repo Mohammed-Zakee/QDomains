@@ -14,14 +14,25 @@ const Signup = () => {
 
   const update = (field) => (e) => setFormData({ ...formData, [field]: e.target.value });
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      login({ email: formData.email, type: accountType, name: formData.name || formData.email.split('@')[0] });
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, accountType })
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Registration failed');
+      
+      login(data.user);
       navigate('/dashboard/user');
+    } catch (err) {
+      alert(err.message);
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   const plans = [

@@ -10,26 +10,33 @@ const Login = () => {
   const [error, setError] = useState('');
   const [showPw, setShowPw] = useState(false);
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    setTimeout(() => {
-      if (credentials.email.includes('admin')) {
-        login({ email: credentials.email, type: 'admin', name: 'Administrator' });
+    try {
+      const response = await fetch('http://localhost:5000/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(credentials)
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.message || 'Login failed');
+
+      login(data.user);
+      if (data.user.role === 'admin') {
         navigate('/dashboard/admin');
-      } else if (credentials.email.includes('service') || credentials.email.includes('support')) {
-        login({ email: credentials.email, type: 'service', name: 'Support Agent' });
+      } else if (data.user.role === 'service') {
         navigate('/dashboard/service');
-      } else if (credentials.email && credentials.password.length >= 1) {
-        login({ email: credentials.email, type: 'individual', name: credentials.email.split('@')[0] });
-        navigate('/dashboard/user');
       } else {
-        setError('Invalid email or password. Please try again.');
+        navigate('/dashboard/user');
       }
+    } catch (err) {
+      setError(err.message);
+    } finally {
       setLoading(false);
-    }, 900);
+    }
   };
 
   const demoLogins = [
