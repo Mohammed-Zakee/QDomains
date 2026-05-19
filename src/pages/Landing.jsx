@@ -20,7 +20,7 @@ const Landing = () => {
             
             {/* Split Hero with 3D Globe */}
             <section style={{ padding: '8rem 0 6rem', background: 'linear-gradient(155deg, var(--bg-primary) 0%, var(--light-blue) 60%, var(--bg-primary) 100%)', position: 'relative', overflow: 'hidden' }}>
-               <div className="container" style={{ display: 'grid', gridTemplateColumns: window.innerWidth < 1024 ? '1fr' : '1.1fr 1fr', gap: '3rem', alignItems: 'center' }}>
+               <div className="container hero-grid" style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr', gap: '3rem', alignItems: 'center' }}>
                   <div className="fade-in">
                       <span className="badge badge-blue" style={{ marginBottom: '1.2rem' }}>🚀 Sri Lanka's Most Trusted Host</span>
                       <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 4.4rem)', fontWeight: 800, marginBottom: '1.2rem', lineHeight: 1.1 }}>One Platform for All Your <span className="gradient-text">Digital Assets</span></h1>
