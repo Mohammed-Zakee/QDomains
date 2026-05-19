@@ -53,8 +53,8 @@ const PublicNavbar = () => {
           <button onClick={toggleTheme} className="btn btn-ghost theme-toggle" style={{ padding: '0.6rem', borderRadius: '50%', fontSize: '1.1rem', minWidth: 'auto', background: 'none' }}>
             {theme === 'light' ? '🌙' : '☀️'}
           </button>
-          <button className="btn btn-ghost" onClick={() => { navigate('/login'); setIsOpen(false); }} style={{ fontWeight: 600 }}>Login</button>
-          <button className="btn btn-primary" onClick={() => { navigate('/signup'); setIsOpen(false); }}>Get Started</button>
+          <button className="btn btn-ghost desktop-only-btn" onClick={() => { navigate('/login'); setIsOpen(false); }} style={{ fontWeight: 600 }}>Login</button>
+          <button className="btn btn-primary desktop-only-btn" onClick={() => { navigate('/signup'); setIsOpen(false); }}>Get Started</button>
 
           {/* Animated Hamburger Icon for Mobile */}
           <button 
