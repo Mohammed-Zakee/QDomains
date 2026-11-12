@@ -1,16 +1,78 @@
-# React + Vite
+# QDomains
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A domain-marketplace **prototype** exploring domain search, pricing, account interfaces, and role-specific dashboards.
 
-Currently, two official plugins are available:
+[Portfolio](https://mohammed-zakee.github.io/Portfolio/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## What the project demonstrates
 
-## React Compiler
+- React 19 and Vite frontend with React Router.
+- Public domain, hosting, pricing, and information pages.
+- Client, service, and administrator dashboard interfaces.
+- An Express/Mongoose authentication API with password hashing and JWT-based sessions.
+- A Three.js globe component in the frontend.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Prototype boundaries
 
-## Expanding the ESLint configuration
+Domain availability in `src/pages/DomainsPage.jsx` is generated with a delayed random result. It is **not** queried from a domain registrar. The displayed pricing and registration actions do not establish a completed registrar purchase or payment integration.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The previously listed Vercel URL returned 404 during the portfolio review, so no working public demo is advertised here. Use the local setup below to explore the prototype.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    A[React and Vite] --> B[Public pages and dashboards]
+    A --> C[Express auth API]
+    C --> D[MongoDB via Mongoose]
+    B --> E[Simulated domain search]
+```
+
+## Local setup
+
+Use a Node.js version compatible with Vite 8 and a development MongoDB database.
+
+```sh
+npm install
+npm run dev
+```
+
+The frontend runs on Vite's displayed local URL, normally `http://localhost:5173`.
+
+To explore the authentication backend in a separate terminal:
+
+```sh
+cd server
+npm install
+node server.js
+```
+
+Configure `MONGODB_URI`, `JWT_SECRET`, and optionally `PORT` in a local `server/.env` using your own development values. The API defaults to port 5000. Do not copy shared demo accounts or existing connection values into a public deployment.
+
+## Useful commands
+
+| Command | Purpose |
+|---|---|
+| `npm run dev` | Start the frontend |
+| `npm run build` | Build the frontend |
+| `npm run preview` | Preview a built frontend |
+| `npm run lint` | Run the configured frontend lint checks |
+
+These commands are defined in `package.json`; this documentation update does not claim they were all executed.
+
+## Source guide
+
+| Path | Purpose |
+|---|---|
+| `src/App.jsx` | Application routes |
+| `src/pages/DomainsPage.jsx` | Search prototype and pricing table |
+| `src/pages/` | Public and dashboard interfaces |
+| `src/context/AuthContext.jsx` | Frontend authentication state |
+| `server/server.js` | API startup and database connection |
+| `server/routes/auth.js` | Registration, login, and demo setup routes |
+
+## Trade-offs and next steps
+
+The prototype prioritizes demonstrating navigation and interface flows. Before treating it as a real service, replace simulated availability with a registrar integration, complete the cart/payment lifecycle, replace demo role assignment and seeding with server-enforced authorization, remove shared demo credentials, and add validation and integration tests.
+
+No live registrations, paying customers, security certification, or business-impact metric is claimed. Individual module ownership and team size are not inferred from repository ownership.
