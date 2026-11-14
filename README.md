@@ -2,7 +2,7 @@
 
 A domain-marketplace **prototype** exploring domain search, pricing, account interfaces, and role-specific dashboards.
 
-[Portfolio](https://mohammed-zakee.github.io/Portfolio/)
+[Live prototype](https://q-domains-fko5.vercel.app/) · [Portfolio](https://mohammed-zakee.github.io/Portfolio/)
 
 ## What the project demonstrates
 
@@ -16,7 +16,7 @@ A domain-marketplace **prototype** exploring domain search, pricing, account int
 
 Domain availability in `src/pages/DomainsPage.jsx` is generated with a delayed random result. It is **not** queried from a domain registrar. The displayed pricing and registration actions do not establish a completed registrar purchase or payment integration.
 
-The previously listed Vercel URL returned 404 during the portfolio review, so no working public demo is advertised here. Use the local setup below to explore the prototype.
+The current public prototype is available at https://q-domains-fko5.vercel.app/. Its landing interface was visually reviewed; domain registration, payments, and end-to-end backend operation are not established by that check.
 
 ## Architecture
 
